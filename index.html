@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi!!!</title>
+    
+    <link rel="stylesheet" href="css/style.css"> 
+
+</head>
+<body>
+
+    <div class="container">
+        <nav class="left-nav">   
+            <div class="top-section">
+                <section id="intro">
+                <video id="intro-video" muted playsinline preload="auto" autoplay onended="freezeFrame()" onclick="this.currentTime = 0; this.play();" class="desktop-only">
+                    <source src="media/websitedone.mp4" type="video/mp4">
+                </video>
+                <a href="index.html"><img src="media/name.png" alt="Intro Image" class="mobile-only"></a>
+                <script>
+                    function freezeFrame() {
+                        const video = document.getElementById('intro-video');
+                        video.pause();
+                    }
+                </script>
+                </section>
+                <a href="index.html"><h1 class="desktop-only">Vincent</h1></a>
+                <p id="title">Interactive Design & Creative Development</p>
+            </div>
+            <ul>
+                <li><a href="index.html"><u>Work</u></a></li>
+                <li><a href="About.html">About Me</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/bearhuntingarmor" target="_blank" aria-label="Instagram">
+                    <img src="media/insta.png" alt="Instagram Icon">
+                </a>
+                <a href="https://www.linkedin.com/in/vincent-caruana-377434396/" target="_blank" aria-label="LinkedIn">
+                    <img src="media/link.png" alt="LinkedIn Icon">
+                </a>
+                <a href="mailto:VinCarDesign@gmail.com" target="_blank" aria-label="email">
+                    <img src="media/email.png" alt="Email Icon">
+                </a>
+                <a href="media/resume.pdf" target="_blank" aria-label="Resume">
+                    <img src="media/port.png" alt="Resume Icon">
+                </a>
+            </div>
+        </nav>
+
+        <main class="right-content">
+            <div class="filter-wrapper">
+                <div class="filter dropdown">
+                    <button class="dropdown-toggle" aria-expanded="false" aria-controls="filter-menu">
+                        Filter:&nbsp; <span id="selected-filter-text">All (5)</span>
+                    </button>
+                    <ul id="filter-menu" class="dropdown-menu">
+                        <li data-filter="all" class="active-filter" data-text="All (5)">All (5)</li>
+                        <li data-filter="ui-ux" data-text="UI/UX">UI/UX</li>
+                        <li data-filter="industrial-design" data-text="Industrial Design">Industrial Design</li>
+                        <li data-filter="motion" data-text="Motion">Motion</li>
+                        <li data-filter="coding" data-text="Coding">Coding</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="portfolio-grid">
+                <a href="DigiPet.html" class="video-item" aria-label="View Project 1 Details" data-categories="ui-ux">
+                    <video muted playsinline loop preload="auto">
+                        <source src="media/tama.mp4" type="video/mp4">
+                    </video>
+                    <div class="info">
+                        <h3>Digital Pet Interface -></h3>
+                        <p>UI/UX</p>
+                    </div>
+                </a>
+                
+                <a href="paranoia.html" class="video-item" aria-label="View Project 3 Details" data-categories="motion">
+                    <video muted playsinline loop preload="auto">
+                        <source src="media/Paranoia.mp4" type="video/mp4">
+                    </video>
+                    <div class="info">
+                        <h3>Paranoia Animation -></h3>
+                        <p>Motion</p>
+                    </div>
+                </a>  
+
+                <a href="PLAY.html" class="video-item" aria-label="View Project 5 Details" data-categories="industrial-design">
+                    <video muted playsinline loop preload="auto">
+                        <source src="media/clothes.mp4" type="video/mp4">
+                    </video>
+                    <div class="info">
+                        <h3>PLAY Clothing Collection -></h3>
+                        <p>Industrial Design</p>
+                    </div>
+                </a>    
+                
+                <a href="Posca.html " class="video-item" aria-label="View Project 2 Details" data-categories="motion">
+                    <video muted playsinline loop preload="auto">
+                        <source src="media/posca.mp4" type="video/mp4">
+                    </video>
+                    <div class="info">
+                        <h3>POSCA Brand Indentity Video -></h3>
+                        <p>Motion, 3D</p>
+                    </div>
+                </a>                         
+
+                <a href="AIToyboxStudio.html" class="video-item" aria-label="View Project 4 Details" data-categories="coding ui-ux">
+                    <video muted playsinline loop preload="auto">
+                        <source src="media/aivid.mp4" type="video/mp4">
+                    </video>
+                    <div class="info">
+                        <h3>AI Toybox Studio -></h3>
+                        <p>UI/UX, Coding, Installation</p>
+                    </div>
+                </a>
+            </div>
+        </main>
+
+        <footer class="mobile-footer">
+            <div class="social-links">
+                <a href="https://www.instagram.com/bearhuntingarmor" target="_blank" aria-label="Instagram">
+                    <img src="media/insta.png" alt="Instagram Icon">
+                </a>
+                <a href="https://www.linkedin.com/in/vincent-caruana-377434396/" target="_blank" aria-label="LinkedIn">
+                    <img src="media/link.png" alt="LinkedIn Icon">
+                </a>
+                <a href="mailto:VinCarDesign@gmail.com" target="_blank" aria-label="email">
+                    <img src="media/email.png" alt="Email Icon">
+                </a>
+                <a href="media/resume.pdf" target="_blank" aria-label="Resume">
+                    <img src="media/port.png" alt="Resume Icon">
+                </a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const projectContainers = document.querySelectorAll('.video-item');
+            // Check if mobile based on your CSS breakpoint
+            const isMobile = window.innerWidth <= 900;
+            
+            projectContainers.forEach(container => {
+                const video = container.querySelector('video');
+                if (video) {
+                    if (isMobile) {
+                        // On Mobile: Autoplay immediately
+                        video.play().catch(e => {
+                            console.log("Autoplay blocked or waiting for interaction.");
+                        });
+                    } else {
+                        // On Desktop: Keep paused initially and use hover logic
+                        video.pause();
+                        video.currentTime = 0;
+
+                        container.addEventListener('mouseenter', () => { 
+                            video.play().catch(e => {}); 
+                        });
+                        
+                        container.addEventListener('mouseleave', () => { 
+                            video.pause(); 
+                            video.currentTime = 0; 
+                        });
+                    }
+                }
+            });
+            
+            const filterDropdown = document.querySelector('.dropdown');
+            const filterToggle = document.querySelector('.dropdown-toggle');
+            const filterMenu = document.getElementById('filter-menu');
+            const filterItems = filterMenu ? filterMenu.querySelectorAll('li') : [];
+            const portfolioItems = document.querySelectorAll('.portfolio-grid .video-item');
+            const selectedFilterTextSpan = document.getElementById('selected-filter-text');
+
+            if (filterToggle && filterMenu && filterDropdown) {
+                filterDropdown.addEventListener('click', function(event) {
+                    if (event.target.closest('.dropdown-toggle')) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        filterMenu.classList.toggle('show');
+                        filterToggle.setAttribute('aria-expanded', filterMenu.classList.contains('show'));
+                    }
+                });
+
+                document.addEventListener('click', function(event) {
+                    if (!filterDropdown.contains(event.target)) {
+                        filterMenu.classList.remove('show');
+                        filterToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+            
+            filterItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const selectedFilter = this.getAttribute('data-filter');
+                    const displayText = this.getAttribute('data-text');
+                    filterItems.forEach(li => li.classList.remove('active-filter'));
+                    this.classList.add('active-filter');
+                    if (selectedFilterTextSpan) selectedFilterTextSpan.textContent = displayText;
+                    filterMenu.classList.remove('show');
+                    portfolioItems.forEach(project => {
+                        const categories = project.getAttribute('data-categories');
+                        project.style.display = (selectedFilter === 'all' || categories.includes(selectedFilter)) ? 'block' : 'none';
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

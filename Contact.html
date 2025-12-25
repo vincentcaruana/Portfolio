@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    
+    <link rel="stylesheet" href="css/style.css"> 
+
+</head>
+<body>
+    <div class="container">
+        <nav class="left-nav">   
+            <div class="top-section">
+                <section id="intro">
+                <video id="intro-video" muted playsinline preload="auto" autoplay onended="freezeFrame()" onclick="this.currentTime = 0; this.play();" class="desktop-only">
+                    <source src="media/websitedone.mp4" type="video/mp4">
+                </video>
+                <a href="index.html"><img src="media/name.png" alt="Intro Image" class="mobile-only"></a>
+
+                <script>
+                    function freezeFrame() {
+                        const video = document.getElementById('intro-video');
+                        video.pause();
+                    }
+                </script>
+                </section>
+                <a href="index.html"><h1 class="desktop-only">Vincent</h1></a>
+                <p id="title">Interactive Design & Creative Development</p>
+            </div>
+            <ul>
+                <li><a href="index.html">Work</a></li>
+                <li><a href="About.html">About Me</a></li>
+                <li><a href="Contact.html"><u>Contact</u></a></li>
+            </ul>
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/bearhuntingarmor" target="_blank" aria-label="Instagram">
+                <img src="media/insta.png" alt="Instagram Icon">
+                </a>
+                <a href="https://www.linkedin.com/in/vincent-caruana-377434396/" target="_blank" aria-label="LinkedIn">
+                    <img src="media/link.png" alt="LinkedIn Icon">
+                </a>
+                <a href="mailto:VinCarDesign@gmail.com" target="_blank" aria-label="email">
+                    <img src="media/email.png" alt="Resume Icon">
+                </a>
+                <a href="media/resume.pdf" target="_blank" aria-label="Resume">
+                    <img src="media/port.png" alt="Resume Icon">
+                </a>
+            </div>
+        </nav>
+
+        <main class="right-content">
+            <div class="content">
+                <h3 class="name">Everything You Need:</h3>
+                <div class="contact">
+                    <a href="mailto:VinCarDesign@gmail.com"><h2>Email</h2></a>
+                    <a href="https://www.linkedin.com/in/vincent-caruana-377434396/" target="_blank"><h2>LinkedIn</h2></a>
+                    <a href= "https://www.instagram.com/bearhuntingarmor" target="_blank"><h2>Instagram</h2></a>
+                    <a href="media/resume.pdf" target="_blank"><h2>Resume</h2></a>
+                </div>
+            </div>
+        </main>
+        <footer class="mobile-footer">
+            <div class="social-links">
+                <a href="https://www.instagram.com/bearhuntingarmor" target="_blank" aria-label="Instagram">
+                    <img src="media/insta.png" alt="Instagram Icon">
+                </a>
+                <a href="https://www.linkedin.com/in/vincent-caruana-377434396/" target="_blank" aria-label="LinkedIn">
+                    <img src="media/link.png" alt="LinkedIn Icon">
+                </a>
+                <a href="mailto:VinCarDesign@gmail.com" target="_blank" aria-label="email">
+                    <img src="media/email.png" alt="Email Icon">
+                </a>
+                <a href="media/resume.pdf" target="_blank" aria-label="Resume">
+                    <img src="media/port.png" alt="Resume Icon">
+                </a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

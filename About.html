@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    
+    <link rel="stylesheet" href="css/style.css"> 
+
+</head>
+<body>
+    <div class="container">
+        <nav class="left-nav">   
+            <div class="top-section">
+                <section id="intro">
+                 <video id="intro-video" muted playsinline preload="auto" autoplay onended="freezeFrame()" onclick="this.currentTime = 0; this.play();" class="desktop-only">
+                    <source src="media/websitedone.mp4" type="video/mp4">
+                </video>
+                <a href="index.html"><img src="media/name.png" alt="Intro Image" class="mobile-only"></a>
+
+                <script>
+                    function freezeFrame() {
+                        const video = document.getElementById('intro-video');
+                        video.pause();
+                    }
+                </script>
+                </section>
+                <a href="index.html"><h1 class="desktop-only">Vincent</h1></a>
+                <p id="title">Interactive Design & Creative Development</p>
+            </div>
+            <ul>
+                <li><a href="index.html">Work</a></li>
+                <li><a href="About.html"><u>About Me</u></a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/bearhuntingarmor" target="_blank" aria-label="Instagram">
+                <img src="media/insta.png" alt="Instagram Icon">
+                </a>
+                <a href="https://www.linkedin.com/in/vincent-caruana-377434396/" target="_blank" aria-label="LinkedIn">
+                    <img src="media/link.png" alt="LinkedIn Icon">
+                </a>
+                <a href="mailto:VinCarDesign@gmail.com" target="_blank" aria-label="email">
+                    <img src="media/email.png" alt="Resume Icon">
+                </a>
+                <a href="media/resume.pdf" target="_blank" aria-label="Resume">
+                    <img src="media/port.png" alt="Resume Icon">
+                </a>
+            </div>
+        </nav>
+
+        <main class="right-content">
+            <div class="content">
+                <img id="me" src="media/me.png" alt="me">
+                <div class="about-header-content">
+                        <h3 class="name">Hello! I'm Vincent Caruana.</h3>
+                        <p> I'm a New York-based designer working towards my <a href="https://www.rit.edu/study/new-media-design-bfa" target="_blank" aria-label="NMD">New Media Design BFA</a> at <strong>Rochester Institute of Technology</strong>. I specialize in <strong>UI/UX design</strong>, <strong>industrial design</strong>, <strong>motion graphics</strong> and <strong>web development</strong>.</p>
+                        <p> As a designer, I aim to create intuitive experiences that encourage play and exploration. I also have an extensive background in fine art and have included some examples of my work below.</p>                 
+                        <p> P.S. I built this site from scratch using HTML, CSS and JS :)</p>
+                </div>
+                <div class="artexamples">
+                    <img class="art1" src="media/art1.jpg" alt="art1">
+                    <img class="art2" src="media/art2.jpg" alt="art2">
+                    <img class="art3" src="media/art3.jpg" alt="art3">
+                    <img class="art4" src="media/art4.jpg" alt="art4">
+                </div>   
+            </div>
+        </main>
+    </div>
+
+    <footer class="mobile-footer">
+            <div class="social-links">
+                <a href="https://www.instagram.com/bearhuntingarmor" target="_blank" aria-label="Instagram">
+                    <img src="media/insta.png" alt="Instagram Icon">
+                </a>
+                <a href="https://www.linkedin.com/in/vincent-caruana-377434396/" target="_blank" aria-label="LinkedIn">
+                    <img src="media/link.png" alt="LinkedIn Icon">
+                </a>
+                <a href="mailto:VinCarDesign@gmail.com" target="_blank" aria-label="email">
+                    <img src="media/email.png" alt="Email Icon">
+                </a>
+                <a href="media/resume.pdf" target="_blank" aria-label="Resume">
+                    <img src="media/port.png" alt="Resume Icon">
+                </a>
+            </div>
+    </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const meImg = document.getElementById('me');
+        const contentDiv = document.querySelector('.content'); 
+
+        if (!meImg || !contentDiv) return;
+
+        // Physics Constants
+        const DEFAULT_SPEED = 0.5;
+        const FRICTION = 0.98;
+        const THROW_MULTIPLIER = 1.05;
+        const MAX_THROW_SPEED = 25;
+
+        // Animation State
+        let x = 60;
+        let y = 20;
+        let dx = DEFAULT_SPEED;
+        let dy = DEFAULT_SPEED; 
+        let rotation = 0;
+        const rotationSpeed = 0.06;
+        let animationFrameId;
+        
+
+        let isDragging = false;
+        let dragOffsetX = 0;
+        let dragOffsetY = 0;
+        let prevMouseX = 0; 
+        let prevMouseY = 0;
+
+        function startDrag(e) {
+            e.preventDefault();
+            
+            isDragging = true;
+            const imgRect = meImg.getBoundingClientRect();
+            dragOffsetX = e.clientX - imgRect.left;
+            dragOffsetY = e.clientY - imgRect.top;
+            
+            // Start tracking mouse position for velocity
+            prevMouseX = e.clientX;
+            prevMouseY = e.clientY;
+            
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('mouseup', stopDrag);
+            
+            meImg.style.cursor = 'grabbing';
+        }
+
+        function onDrag(e) {
+            if (!isDragging) return;
+
+            const contentRect = contentDiv.getBoundingClientRect();
+            const imgRect = meImg.getBoundingClientRect();
+
+            // Store mouse movement delta for the throw calculation in stopDrag
+            dx = e.clientX - prevMouseX;
+            dy = e.clientY - prevMouseY;
+            
+            prevMouseX = e.clientX;
+            prevMouseY = e.clientY;
+
+            // Calculate new position based on mouse and offset
+            let newX = e.clientX - dragOffsetX - contentRect.left;
+            let newY = e.clientY - dragOffsetY - contentRect.top;
+
+            const contentRight = contentRect.width - imgRect.width;
+            const contentBottom = contentRect.height - imgRect.height;
+
+            x = Math.max(0, Math.min(newX, contentRight));
+            y = Math.max(0, Math.min(newY, contentBottom));
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            
+            document.removeEventListener('mousemove', onDrag);
+            document.removeEventListener('mouseup', stopDrag);
+            
+            // --- Apply Throw Velocity ---
+            dx *= THROW_MULTIPLIER;
+            dy *= THROW_MULTIPLIER;
+            
+            let speed = Math.sqrt(dx * dx + dy * dy);
+            if (speed > MAX_THROW_SPEED) {
+                let ratio = MAX_THROW_SPEED / speed;
+                dx *= ratio;
+                dy *= ratio;
+            } else if (speed < DEFAULT_SPEED) {
+                dx = DEFAULT_SPEED * (dx / speed);
+                dy = DEFAULT_SPEED * (dy / speed);
+            }
+
+            meImg.style.cursor = 'grab';
+        }
+        
+        function renderLoop() {
+            rotation += rotationSpeed;
+
+            if (!isDragging) {
+                const contentRect = contentDiv.getBoundingClientRect();
+                const imgRect = meImg.getBoundingClientRect();
+
+                const contentWidth = contentRect.width;
+                const contentHeight = contentRect.height;
+                const imgWidth = imgRect.width;
+                const imgHeight = imgRect.height;
+
+                const contentRight = contentWidth - imgWidth;
+                const contentBottom = contentHeight - imgHeight;
+                
+                // 1. Apply Friction/Momentum Decay
+                dx *= FRICTION;
+                dy *= FRICTION;
+
+                // 2. Update Position
+                x += dx;
+                y += dy;
+
+                // 3. Collision Detection and Reversal
+                if (x < 0 || x > contentRight) {
+                    dx = -dx;
+                    x = Math.max(0, Math.min(x, contentRight)); 
+                }
+
+                if (y < 0 || y > contentBottom) {
+                    dy = -dy;
+                    y = Math.max(0, Math.min(y, contentBottom)); 
+                }
+
+                // 4. Ensure minimum speed is maintained for the classic bounce effect
+                const speedSquared = dx * dx + dy * dy;
+                if (speedSquared < DEFAULT_SPEED * DEFAULT_SPEED && speedSquared > 0) {
+                    // Enforce default speed magnitude, maintaining direction
+                    const currentSpeed = Math.sqrt(speedSquared);
+                    const angle = Math.atan2(dy, dx);
+                    dx = DEFAULT_SPEED * Math.cos(angle);
+                    dy = DEFAULT_SPEED * Math.sin(angle);
+                }
+            }
+
+            // Apply position and rotation
+            meImg.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+
+            animationFrameId = requestAnimationFrame(renderLoop);
+        }
+
+
+        renderLoop();
+        
+        meImg.addEventListener('mousedown', startDrag);
+        meImg.style.cursor = 'grab';
+    });
+</script>
+     <div id="lightbox" onclick="closeLightbox()"> 
+        <div id="lightbox-content" onclick="event.stopPropagation()"> <img id="lightbox-img" src="" alt="Enlarged image">
+            <span id="close-btn">&times;</span>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const galleryImages = document.querySelectorAll('.artexamples img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-btn');
+
+        function openLightbox(imageSrc) {
+            lightboxImg.src = imageSrc;
+            lightbox.style.display = 'flex'; 
+        }
+
+        window.closeLightbox = function() {
+            lightbox.style.display = 'none'; 
+            lightboxImg.src = "";
+        };
+
+        galleryImages.forEach(image => {
+            image.style.cursor = 'zoom-in'; 
+            
+            image.addEventListener('click', () => {
+                openLightbox(image.src);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                closeLightbox();
+            }
+        });
+    });
+</script>
+</body>
+</html>

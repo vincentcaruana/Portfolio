@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Toybox Studio</title>
+    
+    <link rel="stylesheet" href="css/style.css"> 
+
+</head>
+<body>
+    <div class="container">
+        <nav class="left-nav">   
+            <div class="top-section">
+                <section id="intro">
+              <video id="intro-video" muted playsinline preload="auto" autoplay onended="freezeFrame()" onclick="this.currentTime = 0; this.play();" class="desktop-only">
+                    <source src="media/websitedone.mp4" type="video/mp4">
+                </video>
+                <a href="index.html"><img src="media/name.png" alt="Intro Image" class="mobile-only"></a>
+
+                <script>
+                    function freezeFrame() {
+                        const video = document.getElementById('intro-video');
+                        video.pause();
+                    }
+                </script>
+                </section>
+                <a href="index.html"><h1 class="desktop-only">Vincent</h1></a>
+                <p id="title">Interactive Design & Creative Development</p>
+            </div>
+            <ul>
+                <li><a href="index.html"><u>Work</u></a></li>
+                <li><a href="About.html">About Me</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/bearhuntingarmor" target="_blank" aria-label="Instagram">
+                    <img src="media/insta.png" alt="Instagram Icon">
+                </a>
+                <a href="https://www.linkedin.com/in/vincent-caruana-377434396/" target="_blank" aria-label="LinkedIn">
+                    <img src="media/link.png" alt="LinkedIn Icon">
+                </a>
+                <a href="mailto:VinCarDesign@gmail.com" target="_blank" aria-label="email">
+                    <img src="media/email.png" alt="Resume Icon">
+                </a>
+                <a href="media/resume.pdf" target="_blank" aria-label="Resume">
+                    <img src="media/port.png" alt="Resume Icon">
+                </a>
+            </div>
+        </nav>
+
+    <main class="right-content">
+        <div class="content">
+            <h3 class="name">AI Toybox Studio</h3>
+            <p class="proInfo">Sogni AI, Installation, Web Development</p>
+            <video controls>
+                    <source src="media/AIToyBoxStudio.mp4" type="video/mp4">
+            </video>
+            <p>
+                This interactive installation was built for RIT's Creative Collision 2025 event, a multi-day collaboration where groups of students create a project in response to a prompt. This year's prompt was to 'poke the bear,' which encouraged us to push AI to its limits and see what creative and innovative solutions we could come up with. My group developed an installation where users are invited to construct physical compositions which are then captured and re-imagined through Sogni AI via themed filters.
+            </p>
+            <h2>Development</h2>
+            <img class = "exhibit" src="media/exhibitwebsite.jpg" alt="Exhibit">
+            <p>
+                Running on a touchscreen TV, the digital interface was a locally-hosted web app built with HTML, CSS, and JavaScript. Users could select a camera, view a live composition feed, and choose between three filters: Castle, House, or Organic Structure. Hitting the capture button produced four iterations of the transformed composition through the chosen filter.
+            <div class ="caption">
+                <img class = "exhibit2" src="media/Exhibit.jpg" alt="Exhibit">
+                <p>The complete interactive environment</p>
+            </div>    
+            
+            <div class="image-row">
+                <div class ="caption">
+                    <img src="media/exhibitblank.jpg" alt="Exhibit">
+                    <p>View of the space, prior to setup</p>
+                </div>
+                <div class ="caption">
+                    <img src="media/kids.jpg" alt="Exhibit">
+                    <p>Children engaging with the installation :)</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="mobile-footer">
+            <div class="social-links">
+                <a href="https://www.instagram.com/bearhuntingarmor" target="_blank" aria-label="Instagram">
+                    <img src="media/insta.png" alt="Instagram Icon">
+                </a>
+                <a href="https://www.linkedin.com/in/vincent-caruana-377434396/" target="_blank" aria-label="LinkedIn">
+                    <img src="media/link.png" alt="LinkedIn Icon">
+                </a>
+                <a href="mailto:VinCarDesign@gmail.com" target="_blank" aria-label="email">
+                    <img src="media/email.png" alt="Email Icon">
+                </a>
+                <a href="media/resume.pdf" target="_blank" aria-label="Resume">
+                    <img src="media/port.png" alt="Resume Icon">
+                </a>
+            </div>
+        </footer>
+    </div>
+     <div id="lightbox" onclick="closeLightbox()"> 
+        <div id="lightbox-content" onclick="event.stopPropagation()"> <img id="lightbox-img" src="" alt="Enlarged image">
+            <span id="close-btn">&times;</span>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const galleryImages = document.querySelectorAll('.right-content img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-btn');
+
+        function openLightbox(imageSrc) {
+            lightboxImg.src = imageSrc;
+            lightbox.style.display = 'flex'; 
+        }
+
+        window.closeLightbox = function() {
+            lightbox.style.display = 'none'; 
+            lightboxImg.src = "";
+        };
+
+        galleryImages.forEach(image => {
+            image.style.cursor = 'zoom-in'; 
+            
+            image.addEventListener('click', () => {
+                openLightbox(image.src);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                closeLightbox();
+            }
+        });
+    });
+</script>
+</body>
+</html>
