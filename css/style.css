@@ -75,7 +75,7 @@ section {
 }
 
 .left-nav {
-    width: 30%;
+    width: 31%;
     padding: 0 40px;
     display: flex;
     flex-direction: column;
@@ -145,7 +145,7 @@ section {
 /* --- Right Content Area --- */
 .right-content {
     flex-grow: 1;
-    margin-left: 30%;
+    margin-left: 31%;
     padding: 0px 20px;
     background-image: url('../media/grid.png'); 
     background-size: 85%;
@@ -886,4 +886,5 @@ section {
     }
 
 }
+
 
