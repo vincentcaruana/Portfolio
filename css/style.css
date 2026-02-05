@@ -356,8 +356,6 @@ section {
     padding: 8px;
     padding-left: 20px;
     background-color: white;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     border-color: rgb(65, 65, 65);
 }
 
@@ -879,6 +877,7 @@ section {
     }
 
 }
+
 
 
 
