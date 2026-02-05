@@ -350,8 +350,6 @@ section {
     width: 100%;
     height: auto; 
     display: block;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
 }
 
 .portfolio-grid .info{
@@ -881,6 +879,7 @@ section {
     }
 
 }
+
 
 
 
