@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paranoia Animation</title>
+    <title>Playground</title>
     <link rel="icon" type="image/x-icon" href="media/square logo.png">
     <link rel="stylesheet" href="css/style.css"> 
 
@@ -13,7 +13,7 @@
         <nav class="left-nav">   
             <div class="top-section">
                 <section id="intro">
-               <video id="intro-video" muted playsinline preload="auto" autoplay onended="freezeFrame()" onclick="this.currentTime = 0; this.play();" class="desktop-only">
+              <video id="intro-video" muted playsinline preload="auto" autoplay onended="freezeFrame()" onclick="this.currentTime = 0; this.play();" class="desktop-only">
                     <source src="media/websitedone.mp4" type="video/mp4">
                 </video>
                 <a href="index.html"><img src="media/name.png" alt="Intro Image" class="mobile-only"></a>
@@ -29,7 +29,8 @@
                 <p id="title">Designer & Artist ⌯⌲ *₊˚</p>
             </div>
             <ul>
-                <li><a href="index.html"><u>Work</u></a></li>
+                <li><a href="index.html">Work</a></li>
+                <li id="play"><a href="index.html"><u>→ Playground</u></a></li>
                 <li><a href="About.html">About Me</a></li>
                 <li><a href="Contact.html">Contact</a></li>
             </ul>
@@ -51,18 +52,7 @@
         </nav>
 
     <main class="right-content">
-        <div class="content">
-            <h3 class="name">Paranoia Animation</h3>
-            <p class="proInfo">Motion Design, Adobe After Effects, Illustration, Adobe Illustrator</p>
-            <video autoplay controls muted>
-                    <source src="media/ParanoiaFinal.mp4" type="video/mp4">
-            </video>
-            <p>
-                This animation was intended to visually depict the experience of paranoia, set to music by Galen Tipton. I used this project to experiment with motion in abstract spaces and the pairing of movement to music. My goal was to make an experience that felt both satisfying and impactful. 
-            </p>
-            <h2>Process Work</h2>
-            <img src="media/paranoiaPro.png" alt="process1">
-        </div>
+       
     </main>
     <footer class="mobile-footer">
             <div class="social-links">
@@ -86,41 +76,6 @@
             <span id="close-btn">&times;</span>
         </div>
     </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const galleryImages = document.querySelectorAll('.right-content img');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const closeBtn = document.getElementById('close-btn');
-
-        function openLightbox(imageSrc) {
-            lightboxImg.src = imageSrc;
-            lightbox.style.display = 'flex'; 
-        }
-
-        window.closeLightbox = function() {
-            lightbox.style.display = 'none'; 
-            lightboxImg.src = "";
-        };
-
-        galleryImages.forEach(image => {
-            image.style.cursor = 'zoom-in'; 
-            
-            image.addEventListener('click', () => {
-                openLightbox(image.src);
-            });
-        });
-
-        closeBtn.addEventListener('click', closeLightbox);
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-                closeLightbox();
-            }
-        });
-    });
-</script>
 </body>
 
 </html>
-

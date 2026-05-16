@@ -75,7 +75,7 @@ section {
 }
 
 .left-nav {
-    width: 31%;
+    width: 30%;
     padding: 0 40px;
     display: flex;
     flex-direction: column;
@@ -103,13 +103,17 @@ section {
 
 .left-nav ul {
     list-style-type: none; 
-    margin-top: auto; 
+    margin-top: auto;
     margin-bottom: auto;
     padding-left: 30px;
 }
 
+.left-nav ul.home-nav {
+    margin-bottom: auto; /* Lets all extra space sit at the bottom */
+}
+
 .left-nav ul li {
-    margin-bottom: 15px;
+    margin-top: 15px;
     text-decoration: none;
 }
 
@@ -145,7 +149,7 @@ section {
 /* --- Right Content Area --- */
 .right-content {
     flex-grow: 1;
-    margin-left: 31%;
+    margin-left: 30%;
     padding: 0px 20px;
     background-image: url('../media/grid.png'); 
     background-size: 85%;
@@ -175,7 +179,7 @@ section {
 
 #intro-video {
     margin-left: -10px;
-    width: 55%; 
+    width: 60%; 
     height: auto;
     display: block;
     cursor: pointer;
@@ -261,13 +265,66 @@ section {
     background-color: #f0f0f0;
 }
 
+#play a{
+    font-size: 1.3rem !important; /* Use rem or px to verify it's working */
+    padding: 0px 0px 0px 20px !important;
+}
+
+/* 1. Update the Container Animation */
+@keyframes pushDownContainer {
+    0% {
+        height: 0;
+        margin-top: 0;
+    }
+    100% {
+        /* This height should match the 'line-height' of your font */
+        height: 1.8em;
+        /* This margin should match the margin-top of your other <li> elements */
+        margin-top: 15px; 
+    }
+}
+
+/* 2. Update the Link Animation */
+@keyframes slideAndFadeLink {
+    0% {
+        margin-top: -30px; 
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        margin-top: 0;
+        opacity: 1;
+    }
+}
+
+.page-index #play {
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+    height: 0;
+
+    animation: pushDownContainer 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+#play{
+    margin: 0 !important; 
+}
+.page-index #play a {
+    display: block;
+    animation: slideAndFadeLink 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
 .dropdown-menu {
     list-style-type: none;
     position: absolute;
     right: 10px;
     top: 100%;
     margin-top: 5px;
-    min-width: 200px; 
     background-color: white;
     border: 2px solid rgb(65, 65, 65);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -323,21 +380,25 @@ section {
    Portfolio/Project Grid
    ===================================== */
 .portfolio-grid {
-    column-count: 2;
-    column-gap: 10px;
-    padding: 10px 20px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+    gap: 15px; /* Replaces column-gap and margin-bottom */
+    padding: 20px;
+    align-items: start; /* Keeps items from stretching vertically to match each other */
 }
 
 .video-item {
-    display: block; 
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    margin-bottom: 10px;
-    break-inside: avoid;
+    /* margin-bottom and break-inside removed because Grid handles this natively now */
     border-width: 2px;
     border-style: solid;
+    border-radius: 8px;
     border-color: rgb(65, 65, 65);
     position: relative; 
     transition: transform 0.3s ease-in-out; 
+    overflow: hidden; /* This cleanly clips the video to your rounded corners */
 }
 
 .video-item:hover {
@@ -345,18 +406,33 @@ section {
     z-index: 10; 
 }
 
+/* Base video styling */
 .video-item video,
 .video-item img {
     width: 100%;
-    height: auto; 
     display: block;
+    object-fit: cover; /* Ensures video fills its new shape without stretching */
+}
+
+/* 1st and 4th items in every set of 4 -> Square Shape (1, 4, 5, 8, etc.) */
+.video-item:nth-child(4n + 1) video,
+.video-item:nth-child(4n) video {
+    aspect-ratio: 1 / 1;
+}
+
+/* 2nd and 3rd items in every set of 4 -> Rectangular Shape (2, 3, 6, 7, etc.) */
+.video-item:nth-child(4n + 2) video,
+.video-item:nth-child(4n + 3) video {
+    aspect-ratio: 16 / 9; 
 }
 
 .portfolio-grid .info{
     padding: 8px;
     padding-left: 20px;
     background-color: white;
+    border: 1px;
     border-color: rgb(65, 65, 65);
+    flex-grow: 1;
 }
 
 .portfolio-grid .info p{
@@ -383,6 +459,7 @@ section {
     margin-top: 15px;
     border-width: 2px;
     border-style: solid;
+    border-radius: 8px;
     border-color: rgb(65, 65, 65);
     position: relative;
     overflow: hidden;
@@ -421,6 +498,7 @@ section {
     width: 100%;
     margin-bottom: 25px;
     margin-top: 15px;
+    border-radius: 10px;
 }
 
 .content img{
@@ -430,7 +508,6 @@ section {
 }
 
 .exhibit{
-    margin-top: 25px !important;
     margin-bottom: 25px !important;
     padding-top: 15px;
 }
@@ -463,6 +540,7 @@ section {
 .clothing img{
     width: 49.6%;
     display: inline;
+    padding-top: 20px;
 }
 
 .clothing2 img{
@@ -472,16 +550,26 @@ section {
     margin-right: auto;
 }
 
-.tee{
+.Rain{
     width: 50% !important;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-top: 0px !important;
+    display: block !important;
+}
+
+#Rain{
+    width: 50% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    padding-top: 7px;
 }
 
 #hero img{
     width: 49.6%;
-    padding-bottom: 25px;
     padding-top: 15px;
+    padding-bottom: 20px;
     display: inline;
 }
 
@@ -602,6 +690,8 @@ section {
     transition: all 0.3s ease;
 }
 
+
+
 .mobile-only {
     display: none;
 }
@@ -636,10 +726,6 @@ section {
         margin-left: 17px;
         display: block !important;
         width: 60%;
-    }
-
-    .portfolio-grid{
-        padding: 0px;
     }
 
     .container {
@@ -774,7 +860,8 @@ section {
     }
     
     .portfolio-grid {
-        column-count: 1; 
+        grid-template-columns: 1fr; /* Changes to a 1-column layout on mobile */
+        padding: 0 10px; /* Adjust mobile padding */
     }
     
     #me {
@@ -877,7 +964,6 @@ section {
     }
 
 }
-
 
 
 

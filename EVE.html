@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paranoia Animation</title>
+    <title>AI Toybox Studio</title>
     <link rel="icon" type="image/x-icon" href="media/square logo.png">
     <link rel="stylesheet" href="css/style.css"> 
 
@@ -13,7 +13,7 @@
         <nav class="left-nav">   
             <div class="top-section">
                 <section id="intro">
-               <video id="intro-video" muted playsinline preload="auto" autoplay onended="freezeFrame()" onclick="this.currentTime = 0; this.play();" class="desktop-only">
+              <video id="intro-video" muted playsinline preload="auto" autoplay onended="freezeFrame()" onclick="this.currentTime = 0; this.play();" class="desktop-only">
                     <source src="media/websitedone.mp4" type="video/mp4">
                 </video>
                 <a href="index.html"><img src="media/name.png" alt="Intro Image" class="mobile-only"></a>
@@ -52,16 +52,26 @@
 
     <main class="right-content">
         <div class="content">
-            <h3 class="name">Paranoia Animation</h3>
-            <p class="proInfo">Motion Design, Adobe After Effects, Illustration, Adobe Illustrator</p>
-            <video autoplay controls muted>
-                    <source src="media/ParanoiaFinal.mp4" type="video/mp4">
+            <h3 class="name">E.V.E: Emotion Visualizer Engine</h3>
+            <p class="proInfo">UI/UX, Mock Installation, Motion Design, Touchdesigner, After Effects, Figma</p>
+            <video autoplay controls>
+                    <source src="media/FinalPrototype.mp4" type="video/mp4">
             </video>
             <p>
-                This animation was intended to visually depict the experience of paranoia, set to music by Galen Tipton. I used this project to experiment with motion in abstract spaces and the pairing of movement to music. My goal was to make an experience that felt both satisfying and impactful. 
+                This is E.V.E, a gesture-based emotion visualization program. Using a webcam, the user’s hand becomes a paintbrush, creating a direct translation from emotion and movement into line. At the start of the experience, users are prompted to express a specific emotion through drawing. Once completed, the composition is analyzedand displays data such as color distribution alongside the most frequently used colors from other users’ drawings.
             </p>
-            <h2>Process Work</h2>
-            <img src="media/paranoiaPro.png" alt="process1">
+            <p>
+               This program is intended to highlight a feeling I’ve experienced through painting and other forms of creative expression. Translating emotions into visual form creates a unique opportunity for both expression and reflection, one that I feel is often overlooked. There’s something distinctly surreal about seeing your inner world reflected back at you and I wanted to build an experience that helps others engage with that feeling for themselves. 
+            </p>
+            <h2>Development</h2>
+            <img class = "exhibit" src="media/touch.jpg" alt="Touchdesigner">
+            <p>
+                This project features a fully functional gesture-based drawing system alongside an animated preview of the experience. The interface animation, created in After Effects, demonstrates the user flow and visual style of the installation, while the drawing system itself was developed in TouchDesigner using the MediaPipe plugin. Users draw by making a fist, while raising one to four fingers selects different colors. To create the painting effect, I implemented a feedback loop that layers images and follows the user’s hand movements.  Although designed for a gallery setting, the installation could exist in any environment that allows for immersive interaction, such as community spaces like libraries. 
+            </p>
+            <img src="media/designinspo.jpg" alt="Inspo">
+            <img src="media/wire.jpg" alt="Wireframes">
+            <img src="media/style.jpg" alt="Style Frames">
+            <img src="media/final.jpg" alt="Final Comp">
         </div>
     </main>
     <footer class="mobile-footer">
@@ -123,4 +133,5 @@
 </body>
 
 </html>
+
 

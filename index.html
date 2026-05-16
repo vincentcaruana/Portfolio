@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css"> 
 
 </head>
-<body>
+<body class="page-index">
 
     <div class="container">
         <nav class="left-nav">   
@@ -28,7 +28,8 @@
                 <a href="index.html"><h1 class="desktop-only">Vincent</h1></a>
                 <p id="title">Designer & Artist ⌯⌲ *₊˚</p>
             </div>
-            <ul>
+            
+            <ul class="home-nav">
                 <li><a href="index.html"><u>Work</u></a></li>
                 <li><a href="About.html">About Me</a></li>
                 <li><a href="Contact.html">Contact</a></li>
@@ -50,22 +51,7 @@
             </div>
         </nav>
 
-        <main class="right-content">
-            <div class="filter-wrapper">
-                <div class="filter dropdown">
-                    <button class="dropdown-toggle" aria-expanded="false" aria-controls="filter-menu">
-                        Filter:&nbsp; <span id="selected-filter-text">All (5)</span>
-                    </button>
-                    <ul id="filter-menu" class="dropdown-menu">
-                        <li data-filter="all" class="active-filter" data-text="All (5)">All (5)</li>
-                        <li data-filter="ui-ux" data-text="UI/UX">UI/UX</li>
-                        <li data-filter="industrial-design" data-text="Industrial Design">Industrial Design</li>
-                        <li data-filter="motion" data-text="Motion">Motion</li>
-                        <li data-filter="coding" data-text="Coding">Coding</li>
-                    </ul>
-                </div>
-            </div>
-            
+        <main class="right-content">           
             <div class="portfolio-grid">
                 <a href="DigiPet.html" class="video-item" aria-label="View Project 1 Details" data-categories="ui-ux">
                     <video muted playsinline loop preload="auto">
@@ -76,7 +62,15 @@
                         <p>UI/UX</p>
                     </div>
                 </a>
-                
+                 <a href="EVE.html" class="video-item" aria-label="View Project 1 Details" data-categories="ui-ux">
+                    <video muted playsinline loop preload="auto">
+                        <source src="media/Eve2.mp4" type="video/mp4">
+                    </video>
+                    <div class="info">
+                        <h3>E.V.E: Emotion Visualizer Engine -></h3>
+                        <p>UI/UX, Installation, Motion</p>
+                    </div>
+                </a>
                 <a href="paranoia.html" class="video-item" aria-label="View Project 3 Details" data-categories="motion">
                     <video muted playsinline loop preload="auto">
                         <source src="media/Paranoia.mp4" type="video/mp4">
@@ -86,27 +80,6 @@
                         <p>Motion</p>
                     </div>
                 </a>  
-
-                <a href="PLAY.html" class="video-item" aria-label="View Project 5 Details" data-categories="industrial-design">
-                    <video muted playsinline loop preload="auto">
-                        <source src="media/clothes.mp4" type="video/mp4">
-                    </video>
-                    <div class="info">
-                        <h3>PLAY Clothing Collection -></h3>
-                        <p>Industrial Design</p>
-                    </div>
-                </a>    
-                
-                <a href="Posca.html " class="video-item" aria-label="View Project 2 Details" data-categories="motion">
-                    <video muted playsinline loop preload="auto">
-                        <source src="media/posca.mp4" type="video/mp4">
-                    </video>
-                    <div class="info">
-                        <h3>POSCA Brand Indentity Video -></h3>
-                        <p>Motion, 3D</p>
-                    </div>
-                </a>                         
-
                 <a href="AIToyboxStudio.html" class="video-item" aria-label="View Project 4 Details" data-categories="coding ui-ux">
                     <video muted playsinline loop preload="auto">
                         <source src="media/aivid.mp4" type="video/mp4">
@@ -116,6 +89,24 @@
                         <p>UI/UX, Coding, Installation</p>
                     </div>
                 </a>
+                <a href="Cactus.html" class="video-item" aria-label="View Project 5 Details" data-categories="industrial-design">
+                    <video muted playsinline loop preload="auto">
+                        <source src="media/cactus.mp4" type="video/mp4">
+                    </video>
+                    <div class="info">
+                        <h3>Cactus & Rain Poncho -></h3>
+                        <p>Industrial Design</p>
+                    </div>
+                </a>                
+                <a href="Posca.html " class="video-item" aria-label="View Project 2 Details" data-categories="motion">
+                    <video muted playsinline loop preload="auto">
+                        <source src="media/posca.mp4" type="video/mp4">
+                    </video>
+                    <div class="info">
+                        <h3>POSCA Brand Indentity Video -></h3>
+                        <p>Motion, 3D</p>
+                    </div>
+                </a>      
             </div>
         </main>
 
@@ -138,89 +129,118 @@
 
     </div>
 
-    <script>
+   <script>
         window.addEventListener('DOMContentLoaded', function() {
-            const projectContainers = document.querySelectorAll('.video-item');
-            // Check if mobile based on your CSS breakpoint
-            const isMobile = window.innerWidth <= 900;
             
-            projectContainers.forEach(container => {
-                const video = container.querySelector('video');
-                if (video) {
-                    if (isMobile) {
-                        // On Mobile: Autoplay immediately
-                        video.play().catch(e => {
-                            console.log("Autoplay blocked or waiting for interaction.");
-                        });
-                    } else {
-                        // On Desktop: Keep paused initially and use hover logic
-                        video.pause();
-                        video.currentTime = 0;
+            // --- SEQUENTIAL VIDEO PLAYBACK & HOVER LOGIC ---
+            const videos = document.querySelectorAll('.portfolio-grid .video-item video');
 
-                        container.addEventListener('mouseenter', () => { 
-                            video.play().catch(e => {}); 
-                        });
+            if (videos.length > 0) {
+                let currentVideoIndex = 0;
+                let hoveredVideo = null; // Keeps track of the currently hovered video
+
+                videos.forEach(video => {
+                    // Reset all videos on load (use 0.1 to prevent blank frames)
+                    video.removeAttribute('loop');
+                    video.pause();
+                    video.currentTime = 0.1; 
+
+                    // Grab the whole project card so hovering the text also triggers the video
+                    const container = video.closest('.video-item');
+
+                    // 1. Mouse enters the project card
+                    container.addEventListener('mouseenter', () => {
+                        hoveredVideo = video;
+                        const seqVideo = videos[currentVideoIndex];
                         
-                        container.addEventListener('mouseleave', () => { 
-                            video.pause(); 
-                            video.currentTime = 0; 
-                        });
+                        // Pause the sequential video if we are hovering over a different one
+                        if (seqVideo !== hoveredVideo) {
+                            seqVideo.pause();
+                        }
+                        
+                        // Play the hovered video
+                        hoveredVideo.play().catch(e => console.log("Autoplay prevented:", e));
+                    });
+
+                    // 2. Mouse leaves the project card
+                    container.addEventListener('mouseleave', () => {
+                        const seqVideo = videos[currentVideoIndex];
+                        
+                        // Pause and reset the hovered video, UNLESS it happens to be the sequential one
+                        if (video !== seqVideo) {
+                            video.pause();
+                            video.currentTime = 0.1; // Use 0.1 instead of 0
+                        }
+                        
+                        hoveredVideo = null;
+                        
+                        // Resume the sequential video
+                        seqVideo.play().catch(e => console.log("Autoplay prevented:", e));
+                    });
+
+                    // 3. When any video ends
+                    video.onended = function() {
+                        // If the background sequential video ends
+                        if (videos[currentVideoIndex] === video) {
+                            video.currentTime = 0.1; // Use 0.1 instead of 0
+                            video.pause();
+                            // Move to the next index
+                            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+                        } 
+                        // If it was just a preview hover video that ended
+                        else {
+                            video.currentTime = 0.1; // Use 0.1 instead of 0
+                            video.pause();
+                        }
+
+                        // Start the background sequential video ONLY if the mouse isn't currently hovering over something
+                        if (!hoveredVideo) {
+                            videos[currentVideoIndex].play().catch(e => console.log("Autoplay prevented:", e));
+                        }
+                    };
+                });
+
+                // Kick off the sequence with the first video
+                videos[currentVideoIndex].play().catch(e => console.log("Autoplay prevented:", e));
+            }
+
+            // --- MASONRY GAP FIX ---
+            function closeMasonryGaps() {
+                const isMobile = window.innerWidth <= 900;
+                // Only target items that aren't hidden by the filter
+                const visibleItems = Array.from(document.querySelectorAll('.portfolio-grid .video-item'))
+                                          .filter(item => item.style.display !== 'none');
+                
+                // Reset margins first
+                visibleItems.forEach(item => item.style.marginTop = '0px');
+
+                // Don't pull items up on mobile since it's a single column
+                if (isMobile) return; 
+
+                // Loop through items starting from the 3rd one (index 2)
+                // The first two items are at the very top and never need to be pulled up
+                for (let i = 2; i < visibleItems.length; i++) {
+                    const currentItem = visibleItems[i];
+                    const itemAbove = visibleItems[i - 2]; 
+                    
+                    const currentRect = currentItem.getBoundingClientRect();
+                    const aboveRect = itemAbove.getBoundingClientRect();
+                    
+                    // Measure the actual space between the bottom of the item above and top of the current item
+                    const actualGap = currentRect.top - aboveRect.bottom;
+                    
+                    // If the gap is larger than our 15px CSS grid gap, pull it up!
+                    if (actualGap > 16) { 
+                        const shiftAmount = actualGap - 15;
+                        currentItem.style.marginTop = `-${shiftAmount}px`;
                     }
                 }
-            });
-            
-            const filterDropdown = document.querySelector('.dropdown');
-            const filterToggle = document.querySelector('.dropdown-toggle');
-            const filterMenu = document.getElementById('filter-menu');
-            const filterItems = filterMenu ? filterMenu.querySelectorAll('li') : [];
-            const portfolioItems = document.querySelectorAll('.portfolio-grid .video-item');
-            const selectedFilterTextSpan = document.getElementById('selected-filter-text');
-
-            if (filterToggle && filterMenu && filterDropdown) {
-                filterDropdown.addEventListener('click', function(event) {
-                    if (event.target.closest('.dropdown-toggle')) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        filterMenu.classList.toggle('show');
-                        filterToggle.setAttribute('aria-expanded', filterMenu.classList.contains('show'));
-                    }
-                });
-
-                document.addEventListener('click', function(event) {
-                    if (!filterDropdown.contains(event.target)) {
-                        filterMenu.classList.remove('show');
-                        filterToggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
             }
-            
-            filterItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const selectedFilter = this.getAttribute('data-filter');
-                    const displayText = this.getAttribute('data-text');
-                    filterItems.forEach(li => li.classList.remove('active-filter'));
-                    this.classList.add('active-filter');
-                    if (selectedFilterTextSpan) selectedFilterTextSpan.textContent = displayText;
-                    filterMenu.classList.remove('show');
-                    portfolioItems.forEach(project => {
-                        const categories = project.getAttribute('data-categories');
-                        project.style.display = (selectedFilter === 'all' || categories.includes(selectedFilter)) ? 'block' : 'none';
-                    });
-                });
-            });
+
+            // Run gap fix immediately, and re-run if the window is resized
+            setTimeout(closeMasonryGaps, 100);
+            window.addEventListener('resize', closeMasonryGaps);
         });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
