@@ -414,18 +414,17 @@ section {
     object-fit: cover; /* Ensures video fills its new shape without stretching */
 }
 
-/* 1st and 4th items in every set of 4 -> Square Shape (1, 4, 5, 8, etc.) */
+/* 1st and 4th items in every set of 4 -> Rectangular Shape (1, 4, 5, 8, etc.) */
 .video-item:nth-child(4n + 1) video,
 .video-item:nth-child(4n) video {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16 / 9;
 }
 
-/* 2nd and 3rd items in every set of 4 -> Rectangular Shape (2, 3, 6, 7, etc.) */
+/* 2nd and 3rd items in every set of 4 -> Square Shape (2, 3, 6, 7, etc.) */
 .video-item:nth-child(4n + 2) video,
 .video-item:nth-child(4n + 3) video {
-    aspect-ratio: 16 / 9; 
+    aspect-ratio: 1 / 1; 
 }
-
 .portfolio-grid .info{
     padding: 8px;
     padding-left: 20px;
